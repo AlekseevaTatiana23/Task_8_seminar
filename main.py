@@ -1,8 +1,7 @@
-from ui import interface
+from command import main_menu
 
 
 if __name__ == "__main__":
-    interface()
+    main_menu()
 
 
-# Необходимо добавить возможность запрашивать действия бесконечно
