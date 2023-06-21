@@ -10,9 +10,8 @@ def input_data():
     array = ['name', 'surname', 'patronymic', 'phone']
     if not exist_contact(0, " ".join(array)):
         last_id+=1
-        array.insert(0, str(last_id))
         with open('data.csv', 'a', encoding='utf-8') as file:
-            file.write(f'{name};{surname};{patronymic};{phone}\n')
+            file.write(f'{last_id} {name};{surname};{patronymic};{phone}\n')
             print("Изменения успешно внесены!\n")
     else:
         print("Данные уже существуют!")
@@ -22,11 +21,8 @@ def print_data():
     global data_, last_id
     with open('data.csv', 'r', encoding='utf-8') as file:
         data_ = [line.strip() for line in file.readlines()]
-        if data_:
-            last_id = int(data_[-1].split()[0])
-            print(data_, sep="\n")
-        else:
-            print("Empty data!\n")
+        for line in data_:
+                print(line, sep=";")
     return data_
 
 
@@ -77,9 +73,9 @@ def change_line(dataFile, numberRow):
 
 
 def put_data():
-        global data
+        global data_
         print("Какую именно запись по счету Вы хотите изменить?")
-        print_data(data_)
+        data_=print_data()
         number_journal = int(input('Введите номер записи: '))
         number_journal -= 1
         if number_journal<len(data_):
@@ -108,7 +104,7 @@ def search_contact():
     if search_data:
         print(*search_data, sep="\n")
     else:
-        print("Данные не корректны!")
+        print("Данные не корректны!\n")
 
 
 def exist_contact(rec_id, data):

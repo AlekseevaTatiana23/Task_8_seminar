@@ -1,4 +1,4 @@
-from logger import input_data, print_data, put_data, delete_data
+from logger import input_data, print_data, put_data, delete_data, search_contact
 
 def main_menu():
     play=True
@@ -24,8 +24,7 @@ def main_menu():
         elif command == 4:
             put_data()
         elif command == 5:
-            pass
-            #search_data()
+            search_contact()
         elif command == 6:
             play=False
             print("Всего доброго!")
