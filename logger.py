@@ -1,8 +1,7 @@
 data_=[]
 last_id=0
 
-def input_data():
-    global last_id
+def input_data(last_id):
     name = input('Введите имя: ')
     surname = input('Введите фамилию: ')
     patronymic = input("Введите отчество: ")
@@ -18,12 +17,12 @@ def input_data():
   
 
 def print_data():
-    global data_, last_id
     with open('data.csv', 'r', encoding='utf-8') as file:
         data_ = [line.strip() for line in file.readlines()]
+        last_id=int(data_[-1].split()[0])
         for line in data_:
                 print(line, sep=";")
-    return data_
+    return data_, last_id
 
 
 
@@ -52,7 +51,7 @@ def change_line(dataFile, numberRow):
                         f"4. Номер телефона\n"
                         f"Введите ответ: "))
         if answer == 1:
-             name = name = input('Введите имя: ')
+             name = input('Введите имя: ')
         elif answer == 2:
             surname = input('Введите фамилию: ')
         elif answer == 3:
@@ -109,7 +108,7 @@ def search_contact():
 
 def exist_contact(rec_id, data):
         if rec_id:
-         candidates = [i for i in data_ if rec_id in i.split()[0]]
+            candidates= [i for i in data_ if rec_id in i.split()[0]]
         else:
             candidates = [i for i in data_ if data in i]
         return candidates

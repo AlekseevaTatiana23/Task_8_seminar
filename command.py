@@ -3,6 +3,7 @@ from logger import input_data, print_data, put_data, delete_data, search_contact
 def main_menu():
     play=True
     while play:
+        data_, last_id = print_data()
         command=int(input('Выберите функцию телефонного справочника:\n'
               '1. Показать все записи\n'
               '2. Записать данные\n'
@@ -18,7 +19,7 @@ def main_menu():
         if command == 1:
             print_data()
         elif command == 2:
-            input_data()
+            input_data(last_id)
         elif command == 3:
             delete_data()
         elif command == 4:
